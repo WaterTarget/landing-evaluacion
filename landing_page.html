@@ -172,7 +172,7 @@
           <i class="fa-solid fa-house"></i>
         </div>
         <div class="card-content">
-          <div class="card-title">1) Tu punto es:</div>
+          <div class="card-title">1) Mi punto es:</div>
           <div class="options">
             <div class="option" data-group="q1" data-value="Residencial">Residencial</div>
             <div class="option" data-group="q1" data-value="Comercial">Comercial</div>
@@ -271,14 +271,39 @@
         event.preventDefault();
         // Comienza el mensaje con "Estos son mis datos:" como lo solicitó el usuario.
         let message = 'Estos son mis datos:\n';
-        if (selections.q1) message += '1) Tu punto es: ' + selections.q1 + '\n';
+        // Incluye la selección de la primera pregunta con el texto "Mi punto es".
+        if (selections.q1) message += '1) Mi punto es: ' + selections.q1 + '\n';
         if (selections.q2) message += '2) El flujo es más: ' + selections.q2 + '\n';
         if (selections.q3.length > 0) message += '3) Cerca hay más: ' + selections.q3.join(', ') + '\n';
-        // Se invita a adjuntar foto y ubicación; se conserva la instrucción original.
-        message += 'Adjunto foto de la fachada y ubicación.';
-        const encoded = encodeURIComponent(message);
-        const url = 'https://wa.me/' + whatsappNumber + '?text=' + encoded;
-        window.open(url, '_blank');
+        /*
+         * Intentamos obtener la ubicación actual usando geolocation. Si el usuario
+         * otorga permiso, agregamos un enlace de Google Maps con las coordenadas.
+         * Si no está disponible o el usuario rechaza, se mantiene la instrucción
+         * de adjuntar ubicación manualmente junto con la foto de la fachada.
+         */
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            const lat = position.coords.latitude.toFixed(6);
+            const lon = position.coords.longitude.toFixed(6);
+            const mapsLink = 'https://www.google.com/maps?q=' + lat + ',' + lon;
+            message += 'Ubicación: ' + mapsLink + '\n';
+            message += 'Adjunto foto de la fachada.';
+            const encoded = encodeURIComponent(message);
+            const url = 'https://wa.me/' + whatsappNumber + '?text=' + encoded;
+            window.open(url, '_blank');
+          }, function(err) {
+            // En caso de error o rechazo de permiso, se envía sin coordenadas.
+            message += 'Adjunto foto de la fachada y ubicación.';
+            const encoded = encodeURIComponent(message);
+            const url = 'https://wa.me/' + whatsappNumber + '?text=' + encoded;
+            window.open(url, '_blank');
+          });
+        } else {
+          message += 'Adjunto foto de la fachada y ubicación.';
+          const encoded = encodeURIComponent(message);
+          const url = 'https://wa.me/' + whatsappNumber + '?text=' + encoded;
+          window.open(url, '_blank');
+        }
       });
     </script>
 </body>

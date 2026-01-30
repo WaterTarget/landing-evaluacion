@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Evaluación Rápida de Ubicaciones Agranel</title>
+  <!-- Google Font for clean typography -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <!-- Font Awesome for icons (loaded via CDN for convenience) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-d7QOimSxXWFRs3DQ2c2BcAxrj2HHW4gwJ+9siofpDiDRdTfwBgQTGupc7Jxw/c2L+JF+0gDmPUCi6MD9O3vYjA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    :root {
+      /*
+       * Paleta de colores de la marca proporcionada por el usuario:
+       * Azul primario: #083fa0
+       * Naranja secundario: #f98512
+       * Blanco: #ffffff
+       */
+      --primary: #083fa0;            /* Azul para títulos, iconos y estados seleccionados */
+      --primary-light: #ffffff;       /* Fondo claro (blanco) para tarjetas */
+      --border-color: #cfdff1;       /* Borde suave derivado del azul */
+      --button-border: #083fa0;      /* Contorno de botones de opciones */
+      --button-text: #083fa0;        /* Texto de botones de opciones */
+      --button-selected-bg: #083fa0; /* Fondo de botones seleccionados */
+      --button-selected-text: #ffffff; /* Texto en botones seleccionados */
+      --cta-bg: #f98512;            /* Fondo del botón CTA (naranja) */
+      --cta-text: #ffffff;          /* Texto del botón CTA (blanco) */
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #ffffff;
+      color: #0f367e;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: var(--primary);
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .instruction {
+      margin: 20px 0;
+      font-size: 1rem;
+      color: #111;
+    }
+
+    .card {
+      background-color: var(--primary-light);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .card-icon {
+      font-size: 1.5rem;
+      color: var(--primary);
+      margin-right: 16px;
+      display: flex;
+      gap: 8px;
+    }
+
+    .card-content {
+      flex: 1;
+    }
+
+    .card-title {
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #0f367e;
+    }
+
+    .options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .option {
+      padding: 6px 14px;
+      border: 2px solid var(--button-border);
+      border-radius: 20px;
+      background-color: #ffffff;
+      color: var(--button-text);
+      font-weight: 500;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    .option.selected {
+      background-color: var(--button-selected-bg);
+      color: var(--button-selected-text);
+    }
+
+    .cta {
+      margin: 40px 0;
+      text-align: center;
+    }
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
+      background-color: var(--cta-bg);
+      color: var(--cta-text);
+      padding: 16px 24px;
+      border-radius: 16px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      text-decoration: none;
+    }
+
+    .cta-button i {
+      margin-right: 8px;
+      font-size: 1.3rem;
+    }
+
+    .cta-button:hover {
+      /* Oscurecemos ligeramente el naranja en el hover para mayor contraste */
+      background-color: #cf7311;
+    }
+
+    .note {
+      font-size: 0.85rem;
+      color: #666;
+      margin-top: 20px;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+      <h1>Evaluación Rápida de Ubicaciones Agranel</h1>
+      <p class="subtitle">3 datos rápidos + una foto Y ubicación. Nada más.<br>Decisión con datos.</p>
+      <p class="instruction">Marca lo que aplica y respóndeme con tus opciones.</p>
+
+      <!-- Pregunta 1 -->
+      <div class="card">
+        <div class="card-icon">
+          <i class="fa-solid fa-house"></i>
+        </div>
+        <div class="card-content">
+          <div class="card-title">1) Tu punto es:</div>
+          <div class="options">
+            <div class="option" data-group="q1" data-value="Residencial">Residencial</div>
+            <div class="option" data-group="q1" data-value="Comercial">Comercial</div>
+            <div class="option" data-group="q1" data-value="Mixto">Mixto</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pregunta 2 -->
+      <div class="card">
+        <div class="card-icon">
+          <i class="fa-solid fa-person-walking"></i>
+          <i class="fa-solid fa-car"></i>
+        </div>
+        <div class="card-content">
+          <div class="card-title">2) El flujo es más:</div>
+          <div class="options">
+            <div class="option" data-group="q2" data-value="Peatonal">Peatonal</div>
+            <div class="option" data-group="q2" data-value="Vehicular">Vehicular</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pregunta 3 -->
+      <div class="card">
+        <div class="card-icon">
+          <i class="fa-solid fa-map-location-dot"></i>
+        </div>
+        <div class="card-content">
+          <div class="card-title">3) Cerca hay más:</div>
+          <div class="options">
+            <div class="option" data-group="q3" data-value="Casas">Casas</div>
+            <div class="option" data-group="q3" data-value="Escuelas">Escuelas</div>
+            <div class="option" data-group="q3" data-value="Oficinas">Oficinas</div>
+            <div class="option" data-group="q3" data-value="Parques">Parques</div>
+            <div class="option" data-group="q3" data-value="Mercado">Mercado</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cta">
+        <a href="#" id="cta-button" class="cta-button">
+          <i class="fa-solid fa-location-dot"></i>
+          Envía las respuestas de la evaluación
+        </a>
+        <p style="font-size: 0.9rem; color: var(--primary); margin-top: 8px;">
+          Con eso confirmo visibilidad y acceso. <strong>¡Es indispensable!</strong>
+        </p>
+      </div>
+
+      <p style="font-size: 0.9rem; color: var(--primary); text-align: center; margin: 0 0 30px;">
+        Con esto te digo rápido si conviene el punto o si hay que ajustar modelo/ubicación.
+      </p>
+      <p class="note">
+        Herramienta de apoyo. La viabilidad depende del punto real.
+      </p>
+    </div>
+
+    <script>
+      const selections = {
+        q1: null,
+        q2: null,
+        q3: []
+      };
+
+      function handleOptionClick(evt) {
+        const el = evt.target;
+        const group = el.dataset.group;
+        const value = el.dataset.value;
+
+        if (group === 'q3') {
+          // multiple
+          el.classList.toggle('selected');
+          if (el.classList.contains('selected')) {
+            if (!selections.q3.includes(value)) selections.q3.push(value);
+          } else {
+            selections.q3 = selections.q3.filter(v => v !== value);
+          }
+        } else {
+          // single select: clear previous
+          document.querySelectorAll('.option[data-group="' + group + '"]').forEach(opt => opt.classList.remove('selected'));
+          selections[group] = value;
+          el.classList.add('selected');
+        }
+      }
+
+      document.querySelectorAll('.option').forEach(opt => {
+        opt.addEventListener('click', handleOptionClick);
+      });
+
+      // Número de WhatsApp con el prefijo de país (52 para México).
+      // Reemplázalo con el tuyo si cambias de destinatario.
+      const whatsappNumber = '523329397842';
+
+      document.getElementById('cta-button').addEventListener('click', function(event) {
+        event.preventDefault();
+        // Comienza el mensaje con "Estos son mis datos:" como lo solicitó el usuario.
+        let message = 'Estos son mis datos:\n';
+        if (selections.q1) message += '1) Tu punto es: ' + selections.q1 + '\n';
+        if (selections.q2) message += '2) El flujo es más: ' + selections.q2 + '\n';
+        if (selections.q3.length > 0) message += '3) Cerca hay más: ' + selections.q3.join(', ') + '\n';
+        // Se invita a adjuntar foto y ubicación; se conserva la instrucción original.
+        message += 'Adjunto foto de la fachada y ubicación.';
+        const encoded = encodeURIComponent(message);
+        const url = 'https://wa.me/' + whatsappNumber + '?text=' + encoded;
+        window.open(url, '_blank');
+      });
+    </script>
+</body>
+</html>

@@ -276,6 +276,13 @@
                     <span class="label">Espacio adecuado para instalar</span>
                     <span class="value">+1</span>
                 </label>
+
+                <!-- Newly added item for mixed-use areas: personal, residential and commercial. This adds two points. -->
+                <label class="item">
+                    <input type="checkbox" data-value="2">
+                    <span class="label">Uso mixto personal, residencial y comercial</span>
+                    <span class="value">+2</span>
+                </label>
             </div>
 
             <h2>Seguridad y Acceso (suman)</h2>
@@ -289,6 +296,13 @@
                     <input type="checkbox" data-value="3">
                     <span class="label">Flujo constante de personas</span>
                     <span class="value">+3</span>
+                </label>
+
+                <!-- New parking availability item for safety and access section. Adds one point. -->
+                <label class="item">
+                    <input type="checkbox" data-value="1">
+                    <span class="label">Estacionamiento disponible</span>
+                    <span class="value">+1</span>
                 </label>
             </div>
 
@@ -326,9 +340,10 @@
             <div class="viability" id="viability-section">
                 <h3>Semáforo de Viabilidad</h3>
                 <ul class="traffic-list">
-                    <li><div class="dot" style="background-color: var(--color-success);"></div>7 a 10 puntos – Punto Ideal</li>
-                    <li><div class="dot" style="background-color: var(--color-warning);"></div>4 a 6 puntos – Puede funcionar con ajustes</li>
-                    <li><div class="dot" style="background-color: var(--color-danger);"></div>0 a 3 puntos – Mejor otro punto o modelo</li>
+                    <!-- Update viability ranges to reflect new maximum of 13 points -->
+                    <li><div class="dot" style="background-color: var(--color-success);"></div>9 a 13 puntos – Punto Ideal</li>
+                    <li><div class="dot" style="background-color: var(--color-warning);"></div>5 a 8 puntos – Puede funcionar con ajustes</li>
+                    <li><div class="dot" style="background-color: var(--color-danger);"></div>0 a 4 puntos – Mejor otro punto o modelo</li>
                 </ul>
             </div>
 
@@ -337,17 +352,20 @@
             <div class="scenarios-wrapper">
                 <div class="scenario high" id="scenario-high">
                     <div class="scenario-title">Escenario Alto</div>
-                    <p>7 a 10 puntos</p>
+                    <!-- Adjusted range for high scenario due to new maximum of 13 points -->
+                    <p>9 a 13 puntos</p>
                     <p>Escenario Alto</p>
                 </div>
                 <div class="scenario medium" id="scenario-medium">
                     <div class="scenario-title">Escenario Medio</div>
-                    <p>4 a 6 puntos</p>
+                    <!-- Adjusted range for medium scenario -->
+                    <p>5 a 8 puntos</p>
                     <p>Escenario Medio</p>
                 </div>
                 <div class="scenario low" id="scenario-low">
                     <div class="scenario-title">Escenario Conservador</div>
-                    <p>0 a 3 puntos</p>
+                    <!-- Adjusted range for low scenario -->
+                    <p>0 a 4 puntos</p>
                     <p>Escenario conservador</p>
                 </div>
             </div>
@@ -389,10 +407,10 @@
             scenarioMedium.style.opacity = 0.4;
             scenarioLow.style.opacity = 0.4;
 
-            // Highlight the appropriate scenario
-            if (total >= 7) {
+            // Highlight the appropriate scenario. Thresholds updated for a maximum of 13 points.
+            if (total >= 9) {
                 scenarioHigh.style.opacity = 1;
-            } else if (total >= 4) {
+            } else if (total >= 5) {
                 scenarioMedium.style.opacity = 1;
             } else {
                 scenarioLow.style.opacity = 1;
